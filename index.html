@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Builders — Your Local Full-Service Contractor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #ffffff;
+      --bg2:    #f8f5f1;
+      --bg3:    #f2ede7;
+      --orange: #c8520e;
+      --orange-light: #e8651a;
+      --orange-glow: rgba(200,82,14,0.10);
+      --dark:   #111111;
+      --text:   #1a1a1a;
+      --text-mid: #6b7280;
+      --text-dim: #9ca3af;
+      --border: #e5ddd4;
+      --border-light: #f0ebe4;
+      --white:  #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-brand-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 900;
+      color: var(--dark); letter-spacing: 1px; line-height: 1.1;
+      text-transform: uppercase;
+    }
+    .nav-brand-text span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--text-mid); text-decoration: none;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      background: var(--dark) !important;
+      color: var(--white) !important;
+      padding: 10px 24px !important;
+      border-radius: 4px; font-weight: 600 !important;
+      font-size: 13px !important; letter-spacing: 0.5px !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--orange) !important; color: var(--white) !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--dark); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 99;
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column; padding: 20px 24px 28px; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none; font-size: 15px;
+      font-weight: 500; padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu .mob-cta {
+      margin-top: 12px; background: var(--dark);
+      color: var(--white) !important; text-align: center;
+      padding: 14px !important; border-radius: 4px;
+      font-weight: 600 !important; border-bottom: none !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.88) 45%, rgba(255,255,255,0.30) 100%),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80') center/cover no-repeat;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 60px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-style: italic;
+      color: var(--orange); letter-spacing: 0.5px;
+      margin-bottom: 20px; display: block;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(56px, 6vw, 92px);
+      font-weight: 900; text-transform: uppercase;
+      line-height: 0.95; letter-spacing: -1px;
+      color: var(--dark); margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal; color: var(--orange);
+    }
+    .hero-sub {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.8; max-width: 460px; margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--dark); color: var(--white);
+      padding: 16px 36px; border-radius: 4px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--orange); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--dark);
+      padding: 16px 36px; border-radius: 4px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--dark); transform: translateY(-2px); }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden;
+    }
+    .hero-stat {
+      background: var(--white); padding: 28px 24px;
+      transition: background 0.2s;
+    }
+    .hero-stat:hover { background: var(--bg2); }
+    .hero-stat.full { grid-column: span 2; border-top: 1px solid var(--border); }
+    .hero-stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 48px; font-weight: 900;
+      color: var(--orange); line-height: 1;
+    }
+    .hero-stat.full .hero-stat-num { color: var(--dark); }
+    .hero-stat-label {
+      font-size: 11px; color: var(--text-mid);
+      text-transform: uppercase; letter-spacing: 2px;
+      font-weight: 600; margin-top: 6px;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { background: var(--dark); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-block; animation: marquee 28s linear infinite; }
+    .marquee-track span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 3px; color: rgba(255,255,255,0.6); margin: 0 48px;
+    }
+    .marquee-track span.accent { color: var(--orange-light); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+    /* ── SECTIONS ── */
+    .section-wrap { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+    .section-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-style: italic;
+      color: var(--orange); margin-bottom: 16px; display: block;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900; text-transform: uppercase;
+      color: var(--dark); line-height: 1; margin-bottom: 20px;
+    }
+    .section-title span { color: var(--orange); }
+    .section-sub {
+      font-size: 15px; color: var(--text-mid);
+      max-width: 540px; line-height: 1.8; font-weight: 400;
+    }
+    .divider {
+      width: 40px; height: 2px; background: var(--orange);
+      margin: 20px 0;
+    }
+
+    /* ── WHY US ── */
+    .why-bg { background: var(--bg2); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+    .why-sticky { position: sticky; top: 100px; }
+    .why-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(40px, 5vw, 64px); font-weight: 900;
+      text-transform: uppercase; color: var(--dark); line-height: 1; margin-bottom: 20px;
+    }
+    .why-headline span { color: var(--orange); }
+    .why-sub { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 32px; }
+    .why-license {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 20px 24px;
+      border-left: 3px solid var(--orange);
+    }
+    .why-license-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+    .why-license-num { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 900; color: var(--dark); }
+    .why-license-note { font-size: 12px; color: var(--orange); margin-top: 4px; font-weight: 500; }
+    .why-benefits { display: flex; flex-direction: column; gap: 20px; }
+    .why-benefit {
+      background: var(--white); border: 1px solid var(--border-light);
+      border-radius: 8px; padding: 28px 32px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .why-benefit::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+      background: var(--orange); transform: scaleY(0); transform-origin: top;
+      transition: transform 0.3s;
+    }
+    .why-benefit:hover { border-color: var(--border); transform: translateX(4px); box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .why-benefit:hover::before { transform: scaleY(1); }
+    .why-benefit-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; color: var(--orange); font-style: italic;
+      margin-bottom: 10px; display: block;
+    }
+    .why-benefit-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 800; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .why-benefit-desc { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── SERVICES TAB ── */
+    .services-bg { background: var(--bg); border-top: 1px solid var(--border-light); }
+    .services-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+    .tab-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 48px 0 48px; }
+    .tab-btn {
+      background: var(--bg2); border: 1px solid var(--border);
+      color: var(--text-mid); font-size: 12px; font-weight: 600;
+      padding: 10px 20px; border-radius: 4px; cursor: pointer;
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .tab-btn:hover { border-color: var(--orange); color: var(--dark); }
+    .tab-btn.active { background: var(--dark); border-color: var(--dark); color: var(--white); }
+    .tab-content { display: none; }
+    .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .tab-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 48px; font-weight: 900; text-transform: uppercase;
+      color: var(--dark); line-height: 1; margin-bottom: 16px;
+    }
+    .tab-name span { color: var(--orange); }
+    .tab-desc { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 28px; }
+    .tab-points { display: flex; flex-direction: column; gap: 12px; }
+    .tab-point {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 14px; color: var(--text); padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .tab-point:last-child { border-bottom: none; }
+    .tab-point::before { content: '\2014'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+    .tab-visual { border-radius: 8px; overflow: hidden; }
+    .tab-visual img { width: 100%; height: 380px; object-fit: cover; border-radius: 8px; }
+
+    /* ── GALLERY ── */
+    .gallery-bg { background: var(--bg2); border-top: 1px solid var(--border-light); }
+    .gallery-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin-top: 48px;
+    }
+    .gallery-grid .tall { grid-row: span 2; }
+    .gallery-grid img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: 8px; transition: transform 0.5s;
+    }
+    .gallery-grid .short img { height: 220px; }
+    .gallery-grid img:hover { transform: scale(1.03); }
+    .gallery-grid > div { border-radius: 8px; overflow: hidden; }
+
+    /* ── AREAS ── */
+    .areas-bg { background: var(--bg3); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+    .areas-inner { max-width: 1200px; margin: 0 auto; padding: 80px 60px; }
+    .areas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 48px; }
+    .area-pill {
+      background: var(--white); border: 1px solid var(--border-light);
+      border-radius: 4px; padding: 10px 14px;
+      font-size: 12px; color: var(--text-mid);
+      text-align: center; font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .area-pill:hover { border-color: var(--orange); color: var(--dark); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-bg { background: var(--bg); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+    .testimonials-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+    .testi-carousel { position: relative; margin-top: 60px; }
+    .testi-slide { display: none; }
+    .testi-slide.active { display: block; }
+    .testi-card {
+      background: var(--bg2); border: 1px solid var(--border-light);
+      border-radius: 8px; padding: 52px;
+      max-width: 820px; margin: 0 auto;
+      position: relative; overflow: hidden;
+    }
+    .testi-card::before {
+      content: '\201C'; position: absolute; top: 0px; left: 40px;
+      font-size: 180px; color: rgba(200,82,14,0.05);
+      font-family: 'Cormorant Garamond', serif; line-height: 1;
+    }
+    .testi-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; font-style: italic;
+      color: var(--orange); margin-bottom: 20px; display: block;
+    }
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; color: var(--text);
+      line-height: 1.9; margin-bottom: 36px;
+      position: relative; z-index: 1;
+    }
+    .testi-footer { display: flex; align-items: center; gap: 16px; }
+    .testi-avatar {
+      width: 44px; height: 44px; background: var(--dark);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 900; color: var(--white); flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: 14px; color: var(--dark); }
+    .testi-location { font-size: 12px; color: var(--text-mid); margin-top: 2px; }
+    .testi-stars { color: var(--orange); font-size: 14px; margin-left: auto; letter-spacing: 2px; }
+    .testi-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 36px; }
+    .testi-btn {
+      width: 40px; height: 40px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 50%; color: var(--dark);
+      font-size: 18px; cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .testi-btn:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
+    .testi-dots { display: flex; gap: 8px; }
+    .testi-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border); cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .testi-dot.active { background: var(--orange); transform: scale(1.4); }
+
+    /* ── HOW IT WORKS ── */
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 60px; }
+    .how-card {
+      background: var(--white); padding: 40px 32px;
+      transition: background 0.2s;
+    }
+    .how-card:hover { background: var(--bg2); }
+    .how-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-style: italic; color: var(--orange);
+      margin-bottom: 20px; display: block;
+    }
+    .how-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px; font-weight: 800; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 12px;
+    }
+    .how-desc { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-section {
+      position: relative; padding: 120px 60px; text-align: center; overflow: hidden;
+      background: var(--dark);
+    }
+    .cta-bg-img {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1400&q=80') center/cover no-repeat;
+      opacity: 0.08;
+    }
+    .cta-content { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .cta-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-style: italic;
+      color: rgba(255,255,255,0.5); margin-bottom: 24px; display: block;
+    }
+    .cta-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(44px, 6vw, 80px); font-weight: 900;
+      text-transform: uppercase; color: var(--white); line-height: 1; margin-bottom: 20px;
+    }
+    .cta-headline span { color: var(--orange-light); }
+    .cta-sub { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 44px; }
+    .btn-cta-big {
+      background: var(--white); color: var(--dark);
+      padding: 18px 52px; border-radius: 4px;
+      font-size: 13px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none; display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-cta-big:hover { background: var(--orange-light); color: var(--white); transform: translateY(-2px); }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: var(--bg2); border-top: 1px solid var(--border-light); }
+    .contact-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+    .contact-info h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px; font-weight: 800; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 32px; letter-spacing: 0.5px;
+    }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
+    .contact-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+    .contact-value { font-size: 14px; color: var(--text); margin-top: 4px; font-weight: 500; line-height: 1.6; }
+    .contact-value a { color: var(--orange); text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+    .contact-divider { width: 100%; height: 1px; background: var(--border-light); margin: 8px 0 24px; }
+    .license-badge {
+      display: inline-block;
+      background: var(--white); border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      padding: 10px 16px; border-radius: 4px;
+      font-size: 12px; color: var(--dark); font-weight: 600;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-field { display: flex; flex-direction: column; gap: 8px; }
+    .form-field label { font-size: 10px; color: var(--text-dim); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+    .form-field input, .form-field select, .form-field textarea {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 4px; padding: 12px 16px;
+      color: var(--text); font-size: 14px; outline: none;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--dark); }
+    .form-field textarea { min-height: 120px; resize: vertical; }
+    .form-field select option { background: var(--white); }
+    .form-submit {
+      background: var(--dark); color: var(--white);
+      border: none; border-radius: 4px; padding: 14px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--orange); }
+    .form-note { font-size: 12px; color: var(--text-dim); text-align: center; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); padding: 60px; }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 48px;
+    }
+    .footer-brand-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 900; text-transform: uppercase;
+      color: var(--white); letter-spacing: 1px; line-height: 1.1;
+    }
+    .footer-brand-text span { color: var(--orange-light); }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 16px; max-width: 260px; }
+    .footer-col h4 {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); letter-spacing: 2px; margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: rgba(255,255,255,0.3);
+    }
+
+    /* ── CHATBOT ── */
+    .chat-bubble {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 56px; height: 56px; background: var(--dark);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .chat-bubble:hover { transform: scale(1.08); background: var(--orange); }
+    .chat-bubble-icon { width: 22px; height: 22px; fill: white; }
+    .chat-window {
+      position: fixed; bottom: 96px; right: 28px; z-index: 998;
+      width: 360px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+      display: none; flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      animation: chatSlideIn 0.3s ease;
+    }
+    @keyframes chatSlideIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .chat-window.open { display: flex; }
+    .chat-header {
+      background: var(--dark); padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .chat-header-dot { width: 8px; height: 8px; background: #4dff91; border-radius: 50%; flex-shrink: 0; }
+    .chat-header-text { font-weight: 700; font-size: 14px; color: var(--white); flex: 1; }
+    .chat-header-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+    .chat-lead { padding: 24px 20px; display: flex; flex-direction: column; gap: 12px; background: var(--bg2); }
+    .chat-lead p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+    .chat-lead input {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; padding: 11px 14px;
+      color: var(--text); font-size: 14px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-lead input:focus { border-color: var(--dark); }
+    .chat-lead button {
+      background: var(--dark); color: white;
+      border: none; border-radius: 6px; padding: 12px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .chat-lead button:hover { background: var(--orange); }
+    .chat-messages { padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 200px; max-height: 300px; overflow-y: auto; }
+    .chat-msg {
+      background: var(--bg2); border-radius: 10px 10px 10px 3px;
+      padding: 11px 15px; font-size: 14px; color: var(--text); max-width: 85%; line-height: 1.55;
+    }
+    .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+    .quick-btn {
+      background: var(--bg2); border: 1px solid var(--border);
+      color: var(--text-mid); font-size: 12px; font-weight: 500;
+      padding: 7px 13px; border-radius: 100px; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .quick-btn:hover { background: var(--dark); color: white; border-color: var(--dark); }
+    .typing-dots { display: flex; gap: 5px; align-items: center; padding: 14px 16px; }
+    .typing-dots span {
+      width: 6px; height: 6px; background: var(--text-dim);
+      border-radius: 50%; animation: dot-bounce 1.2s infinite ease-in-out;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+      40% { transform: translateY(-5px); opacity: 1; }
+    }
+    .chat-input-row { padding: 14px 16px; display: flex; gap: 10px; border-top: 1px solid var(--border-light); }
+    .chat-input-row input {
+      flex: 1; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 10px 14px;
+      color: var(--text); font-size: 14px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input-row input:focus { border-color: var(--dark); }
+    .chat-send {
+      background: var(--dark); color: white;
+      border: none; border-radius: 6px; width: 40px; height: 40px;
+      cursor: pointer; font-size: 16px; transition: background 0.2s;
+    }
+    .chat-send:hover { background: var(--orange); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal, .reveal-left, .reveal-right {
+      opacity: 0; transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal { transform: translateY(32px); }
+    .reveal-left { transform: translateX(-40px); }
+    .reveal-right { transform: translateX(40px); }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-content { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+      .section-wrap, .why-inner, .services-inner, .areas-inner, .testimonials-inner, .contact-inner { padding: 60px 24px; }
+      .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .why-sticky { position: static; }
+      .tab-content.active { grid-template-columns: 1fr; }
+      .areas-grid { grid-template-columns: repeat(3, 1fr); }
+      .how-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .cta-section { padding: 80px 24px; }
+      footer { padding: 48px 24px; }
+      .testi-card { padding: 32px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .tall { grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand-text">APEX <span>BUILDERS</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#why" onclick="closeMenu()">Why Us</a>
+    <a href="#areas" onclick="closeMenu()">Areas</a>
+    <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+    <a href="#contact" class="mob-cta" onclick="closeMenu()">Get a Free Quote</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <span class="hero-eyebrow">Your Local Full-Service Contractor</span>
+        <h1>We Build It.<br><em>You Enjoy</em><br>It.</h1>
+        <p class="hero-sub">Residential and commercial construction, renovations, and repairs. One team from start to finish — no juggling contractors, no excuses. Quality work, delivered on time.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary" id="magnetBtn">Get a Free Quote</a>
+          <a href="#services" class="btn-ghost">Our Services</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stats reveal">
+          <div class="hero-stat">
+            <div class="hero-stat-num">250+</div>
+            <div class="hero-stat-label">Projects Completed</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">15</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div class="hero-stat full">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Licensed, Bonded & Insured</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>General Contracting</span>
+      <span class="accent">Renovations</span>
+      <span>New Builds</span>
+      <span class="accent">Commercial Fit-Outs</span>
+      <span>Extensions</span>
+      <span class="accent">Concrete & Foundations</span>
+      <span>Roofing</span>
+      <span class="accent">Project Management</span>
+      <span>Fully Licensed</span>
+      <span>General Contracting</span>
+      <span class="accent">Renovations</span>
+      <span>New Builds</span>
+      <span class="accent">Commercial Fit-Outs</span>
+      <span>Extensions</span>
+      <span class="accent">Concrete & Foundations</span>
+      <span>Roofing</span>
+      <span class="accent">Project Management</span>
+      <span>Fully Licensed</span>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div class="why-bg" id="why">
+    <div class="why-inner section-wrap">
+      <span class="section-eyebrow reveal">Why Apex Builders</span>
+      <div class="why-grid">
+        <div class="why-sticky reveal-left">
+          <div class="why-headline">Built On<br><span>Trust.</span><br>Not Talk.</div>
+          <div class="divider"></div>
+          <p class="why-sub">Most clients waste weeks chasing contractors who don't return calls. Apex Builders is a single point of contact for every stage of your project — from first meeting to final walkthrough.</p>
+          <div class="why-license">
+            <div class="why-license-label">Credentials</div>
+            <div class="why-license-num">Fully Licensed</div>
+            <div class="why-license-note">Licensed, Bonded & Insured &mdash; General Contracting</div>
+          </div>
+        </div>
+        <div class="why-benefits">
+          <div class="why-benefit reveal">
+            <span class="why-benefit-num">01 &mdash; Reliability</span>
+            <div class="why-benefit-title">We Show Up. Every Time.</div>
+            <div class="why-benefit-desc">No ghosting, no excuses. We stick to the schedule, keep you updated, and deliver exactly what we promised. Your project stays on track.</div>
+          </div>
+          <div class="why-benefit reveal">
+            <span class="why-benefit-num">02 &mdash; One Team</span>
+            <div class="why-benefit-title">No Subcontractor Runaround</div>
+            <div class="why-benefit-desc">One crew handles your entire project. No finger-pointing between trades, no scheduling gaps, no communication breakdowns.</div>
+          </div>
+          <div class="why-benefit reveal">
+            <span class="why-benefit-num">03 &mdash; Transparency</span>
+            <div class="why-benefit-title">No Surprise Costs</div>
+            <div class="why-benefit-desc">You get a detailed quote upfront. If something changes, you hear about it before we lift a hammer — not when the invoice arrives.</div>
+          </div>
+          <div class="why-benefit reveal">
+            <span class="why-benefit-num">04 &mdash; Craftsmanship</span>
+            <div class="why-benefit-title">Quality That Lasts</div>
+            <div class="why-benefit-desc">We don't cut corners to save time. Every joint, every finish, every detail is done right the first time. Our reputation is built on repeat clients.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="services-bg">
+    <div class="services-inner" id="services">
+      <span class="section-eyebrow reveal">What We Do</span>
+      <h2 class="section-title reveal">Our <span>Services</span></h2>
+      <p class="section-sub reveal">From a quick repair to a full ground-up build &mdash; we handle every scope of work with the same standard of excellence.</p>
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(0)">Renovations</button>
+        <button class="tab-btn" onclick="switchTab(1)">New Builds</button>
+        <button class="tab-btn" onclick="switchTab(2)">Commercial</button>
+        <button class="tab-btn" onclick="switchTab(3)">Concrete & Foundations</button>
+        <button class="tab-btn" onclick="switchTab(4)">Roofing</button>
+        <button class="tab-btn" onclick="switchTab(5)">Extensions & Add-Ons</button>
+      </div>
+
+      <div class="tab-content active">
+        <div class="tab-info">
+          <div class="tab-name">Home <span>Renovations</span></div>
+          <p class="tab-desc">Transform tired spaces into something you're proud of. Kitchens, bathrooms, living areas, full-home renovations &mdash; designed around how you actually live.</p>
+          <div class="tab-points">
+            <div class="tab-point">Full kitchen and bathroom renovations</div>
+            <div class="tab-point">Interior remodels and open-concept conversions</div>
+            <div class="tab-point">Flooring, tiling, cabinetry, and finishes</div>
+            <div class="tab-point">Permit handling and project management included</div>
+          </div>
+        </div>
+        <div class="tab-visual">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="Kitchen renovation" />
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-info">
+          <div class="tab-name">New <span>Construction</span></div>
+          <p class="tab-desc">Build from the ground up. Custom homes, duplexes, and multi-unit developments &mdash; from foundation to key handover.</p>
+          <div class="tab-points">
+            <div class="tab-point">Custom home builds and spec homes</div>
+            <div class="tab-point">Foundations, framing, and structural work</div>
+            <div class="tab-point">Full project management start to finish</div>
+            <div class="tab-point">All permits and inspections handled</div>
+          </div>
+        </div>
+        <div class="tab-visual">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="New construction" />
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-info">
+          <div class="tab-name">Commercial <span>Fit-Outs</span></div>
+          <p class="tab-desc">Get your business space built out right. Offices, retail, restaurants, warehouses &mdash; we handle the build so you can focus on opening day.</p>
+          <div class="tab-points">
+            <div class="tab-point">Office and retail tenant improvements</div>
+            <div class="tab-point">Restaurant and hospitality build-outs</div>
+            <div class="tab-point">Warehouse and industrial conversions</div>
+            <div class="tab-point">Code compliance and commercial permits</div>
+          </div>
+        </div>
+        <div class="tab-visual">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Commercial space" />
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-info">
+          <div class="tab-name">Concrete & <span>Foundations</span></div>
+          <p class="tab-desc">The base everything rests on. Driveways, slabs, footings, retaining walls &mdash; poured right and built to last.</p>
+          <div class="tab-points">
+            <div class="tab-point">Residential and commercial concrete work</div>
+            <div class="tab-point">Driveways, patios, and walkways</div>
+            <div class="tab-point">Foundation pours and footings</div>
+            <div class="tab-point">Retaining walls and structural concrete</div>
+          </div>
+        </div>
+        <div class="tab-visual">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Concrete work" />
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-info">
+          <div class="tab-name">Roofing & <span>Exteriors</span></div>
+          <p class="tab-desc">Protect your investment from the top down. New roofs, repairs, re-roofing, gutters, and exterior cladding &mdash; done right so it holds up for decades.</p>
+          <div class="tab-points">
+            <div class="tab-point">Full roof replacements and new installs</div>
+            <div class="tab-point">Leak repairs and emergency patching</div>
+            <div class="tab-point">Gutter installation and maintenance</div>
+            <div class="tab-point">Exterior cladding and weatherproofing</div>
+          </div>
+        </div>
+        <div class="tab-visual">
+          <img src="https://images.unsplash.com/photo-1632759145351-1d592919f522?w=800&q=80" alt="Roofing work" />
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-info">
+          <div class="tab-name">Extensions & <span>Add-Ons</span></div>
+          <p class="tab-desc">Need more space? Home extensions, granny flats, second stories, and garage conversions &mdash; seamlessly integrated with your existing structure.</p>
+          <div class="tab-points">
+            <div class="tab-point">Single and double story extensions</div>
+            <div class="tab-point">Granny flats and secondary dwellings</div>
+            <div class="tab-point">Garage conversions and studio builds</div>
+            <div class="tab-point">Deck and outdoor living additions</div>
+          </div>
+        </div>
+        <div class="tab-visual">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Home extension" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT GALLERY -->
+  <div class="gallery-bg">
+    <div class="section-wrap">
+      <span class="section-eyebrow reveal">Our Work</span>
+      <h2 class="section-title reveal">Real Projects. <span>Real Results.</span></h2>
+      <div class="gallery-grid reveal">
+        <div class="tall">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="Construction project" />
+        </div>
+        <div class="short">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="Kitchen renovation" />
+        </div>
+        <div class="short">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Modern bathroom" />
+        </div>
+        <div class="short">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Home exterior" />
+        </div>
+        <div class="short">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80" alt="Commercial build" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AREAS -->
+  <div class="areas-bg" id="areas">
+    <div class="areas-inner">
+      <span class="section-eyebrow reveal">Where We Work</span>
+      <h2 class="section-title reveal">Serving Your <span>Local Area</span></h2>
+      <div class="areas-grid">
+        <div class="area-pill reveal">Bankstown</div>
+        <div class="area-pill reveal">Blacktown</div>
+        <div class="area-pill reveal">Camden</div>
+        <div class="area-pill reveal">Campbelltown</div>
+        <div class="area-pill reveal">Canterbury</div>
+        <div class="area-pill reveal">Castle Hill</div>
+        <div class="area-pill reveal">Fairfield</div>
+        <div class="area-pill reveal">Hornsby</div>
+        <div class="area-pill reveal">Hurstville</div>
+        <div class="area-pill reveal">Liverpool</div>
+        <div class="area-pill reveal">Merrylands</div>
+        <div class="area-pill reveal">Parramatta</div>
+        <div class="area-pill reveal">Penrith</div>
+        <div class="area-pill reveal">Ryde</div>
+        <div class="area-pill reveal">Strathfield</div>
+        <div class="area-pill reveal">Sutherland</div>
+        <div class="area-pill reveal">Wetherill Park</div>
+        <div class="area-pill reveal">Windsor</div>
+        <div class="area-pill reveal">Wollongong</div>
+        <div class="area-pill reveal">Greater Sydney</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-bg" id="testimonials">
+    <div class="testimonials-inner">
+      <span class="section-eyebrow reveal">Reviews</span>
+      <h2 class="section-title reveal">What Our <span>Clients Say</span></h2>
+      <div class="testi-carousel">
+        <div class="testi-slide active">
+          <div class="testi-card">
+            <span class="testi-badge">Full Home Renovation &mdash; Parramatta</span>
+            <p class="testi-quote">"We had three other builders quote the job and disappear. Apex showed up on time, gave us an honest price, and delivered exactly what they promised. Our house hasn't looked this good since we bought it. Can't recommend them enough."</p>
+            <div class="testi-footer">
+              <div class="testi-avatar">M</div>
+              <div><div class="testi-name">Michael & Sarah T.</div><div class="testi-location">Parramatta</div></div>
+              <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-card">
+            <span class="testi-badge">Granny Flat Build &mdash; Liverpool</span>
+            <p class="testi-quote">"Building a granny flat felt like a nightmare with council approvals and all the back-and-forth. Apex handled the lot. They even caught a drainage issue before it became a problem. Mum's been in there three months now and loves it."</p>
+            <div class="testi-footer">
+              <div class="testi-avatar">R</div>
+              <div><div class="testi-name">Rachel N.</div><div class="testi-location">Liverpool</div></div>
+              <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-card">
+            <span class="testi-badge">Commercial Fit-Out &mdash; Penrith</span>
+            <p class="testi-quote">"Needed our cafe built out in six weeks before our lease start date. Every other builder said it couldn't be done. Apex did it in five. Professional, clean, and they communicated every step. Already lined them up for our second location."</p>
+            <div class="testi-footer">
+              <div class="testi-avatar">D</div>
+              <div><div class="testi-name">David K.</div><div class="testi-location">Penrith</div></div>
+              <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-card">
+            <span class="testi-badge">Kitchen Renovation &mdash; Castle Hill</span>
+            <p class="testi-quote">"I've renovated twice before with different builders and both times it went over budget. Apex gave me a fixed price and stuck to it. The kitchen looks incredible — modern, clean, exactly what I showed them on Pinterest. First time a build has gone smoothly."</p>
+            <div class="testi-footer">
+              <div class="testi-avatar">J</div>
+              <div><div class="testi-name">Jenny L.</div><div class="testi-location">Castle Hill</div></div>
+              <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-controls">
+        <button class="testi-btn" onclick="prevTesti()">&#8249;</button>
+        <div class="testi-dots">
+          <div class="testi-dot active" onclick="goTesti(0)"></div>
+          <div class="testi-dot" onclick="goTesti(1)"></div>
+          <div class="testi-dot" onclick="goTesti(2)"></div>
+          <div class="testi-dot" onclick="goTesti(3)"></div>
+        </div>
+        <button class="testi-btn" onclick="nextTesti()">&#8250;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section-wrap">
+    <span class="section-eyebrow reveal">The Process</span>
+    <h2 class="section-title reveal">How It <span>Works</span></h2>
+    <p class="section-sub reveal">Three steps from first call to finished project.</p>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <span class="how-num">Step 01</span>
+        <div class="how-title">Free Consultation</div>
+        <div class="how-desc">Give us a call or fill out the form. We'll come to your site, assess the job, and give you a clear, honest quote &mdash; no obligation, no pressure.</div>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-num">Step 02</span>
+        <div class="how-title">Plan & Schedule</div>
+        <div class="how-desc">We lock in timelines, handle permits, and coordinate everything. One point of contact keeps you updated &mdash; you always know what's happening and when.</div>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-num">Step 03</span>
+        <div class="how-title">Built & Delivered</div>
+        <div class="how-desc">Your project is completed on time and to spec. We walk you through every detail at handoff. If it's not right, we fix it &mdash; no arguments, no extra charge.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-bg-img"></div>
+    <div class="cta-content">
+      <span class="cta-eyebrow">Ready to Build?</span>
+      <h2 class="cta-headline">One Call.<br><span>Everything Handled.</span></h2>
+      <p class="cta-sub">Stop chasing contractors who don't call back. Apex Builders handles your entire project from start to finish &mdash; on time, on budget, no excuses.</p>
+      <a href="#contact" class="btn-cta-big">Get Your Free Quote</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-bg" id="contact">
+    <div class="contact-inner">
+      <span class="section-eyebrow reveal">Get In Touch</span>
+      <h2 class="section-title reveal">Request a <span>Free Quote</span></h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h3>Contact Information</h3>
+          <div class="contact-item">
+            <div>
+              <div class="contact-label">Address</div>
+              <div class="contact-value">123 Builder Street<br>Parramatta, NSW 2150</div>
+            </div>
+          </div>
+          <div class="contact-divider"></div>
+          <div class="contact-item">
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-value"><a href="tel:0400000000">0400 000 000</a></div>
+            </div>
+          </div>
+          <div class="contact-divider"></div>
+          <div class="contact-item">
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:info@apexbuilders.com.au">info@apexbuilders.com.au</a></div>
+            </div>
+          </div>
+          <div class="contact-divider"></div>
+          <div class="contact-item">
+            <div>
+              <div class="contact-label">Hours</div>
+              <div class="contact-value">Monday &ndash; Friday, 7:00 AM &ndash; 5:00 PM</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;">
+            <span class="license-badge">Licensed, Bonded & Insured &mdash; General Contracting</span>
+          </div>
+        </div>
+        <form class="contact-form reveal-right" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-field"><label>First Name</label><input type="text" placeholder="John" required /></div>
+            <div class="form-field"><label>Last Name</label><input type="text" placeholder="Smith" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Phone</label><input type="tel" placeholder="0400 000 000" /></div>
+            <div class="form-field"><label>Email</label><input type="email" placeholder="you@example.com" required /></div>
+          </div>
+          <div class="form-field">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Home Renovation</option>
+              <option>New Build</option>
+              <option>Commercial Fit-Out</option>
+              <option>Concrete & Foundations</option>
+              <option>Roofing & Exteriors</option>
+              <option>Extension / Add-On</option>
+              <option>Granny Flat</option>
+              <option>Repair / Maintenance</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Project Details</label>
+            <textarea placeholder="Tell us about your project — location, scope, timeline..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+          <p class="form-note">We typically respond within 1 business day.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-text">APEX <span>BUILDERS</span></div>
+        <p>A full-service licensed contractor serving Greater Sydney. Residential, commercial, and everything in between &mdash; built right, on time, every time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Renovations</a></li>
+          <li><a href="#services">New Builds</a></li>
+          <li><a href="#services">Commercial</a></li>
+          <li><a href="#services">Concrete</a></li>
+          <li><a href="#services">Roofing</a></li>
+          <li><a href="#services">Extensions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#areas">Areas Served</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:0400000000">0400 000 000</a></li>
+          <li><a href="mailto:info@apexbuilders.com.au">info@apexbuilders.com.au</a></li>
+          <li><a href="#contact">Parramatta, NSW</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Apex Builders &mdash; All Rights Reserved</p>
+      <p>Licensed, Bonded & Insured</p>
+    </div>
+  </footer>
+
+  <!-- CHATBOT -->
+  <div class="chat-bubble" onclick="toggleChat()">
+    <svg class="chat-bubble-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+    </svg>
+  </div>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-header-dot"></div>
+      <div style="flex:1;">
+        <div class="chat-header-text">Apex Assistant</div>
+        <div class="chat-header-sub">Usually replies instantly</div>
+      </div>
+    </div>
+    <div class="chat-lead" id="chatLead">
+      <p>Before we chat &mdash; what's your name?</p>
+      <input type="text" id="leadName" placeholder="Your name..." onkeydown="if(event.key==='Enter')startChat()" />
+      <button onclick="startChat()">Start Chat</button>
+    </div>
+    <div id="chatArea" style="display:none;flex-direction:column;">
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="quick-replies" id="quickReplies">
+        <button class="quick-btn" onclick="quickAsk('What services do you offer?')">Services</button>
+        <button class="quick-btn" onclick="quickAsk('How do I get a free quote?')">Get a Quote</button>
+        <button class="quick-btn" onclick="quickAsk('What areas do you cover?')">Areas</button>
+        <button class="quick-btn" onclick="quickAsk('Are you licensed?')">Licensing</button>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendChat()" id="chatInput" />
+        <button class="chat-send" onclick="sendChat()">&#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+    function switchTab(idx) {
+      document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
+      document.querySelectorAll('.tab-content').forEach((c,i) => c.classList.toggle('active', i === idx));
+    }
+    let testiIdx = 0;
+    const slides = document.querySelectorAll('.testi-slide');
+    const dots = document.querySelectorAll('.testi-dot');
+    function goTesti(n) {
+      slides[testiIdx].classList.remove('active'); dots[testiIdx].classList.remove('active');
+      testiIdx = (n + slides.length) % slides.length;
+      slides[testiIdx].classList.add('active'); dots[testiIdx].classList.add('active');
+    }
+    function nextTesti() { goTesti(testiIdx + 1); }
+    function prevTesti() { goTesti(testiIdx - 1); }
+    setInterval(() => nextTesti(), 5500);
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Message Sent';
+      btn.style.background = '#16a34a';
+      setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; e.target.reset(); }, 3000);
+    }
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const sibs = e.target.parentElement.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+          let delay = 0;
+          sibs.forEach((s, i) => { if (s === e.target) delay = i * 80; });
+          setTimeout(() => e.target.classList.add('visible'), delay);
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+    const magBtn = document.getElementById('magnetBtn');
+    if (magBtn) {
+      magBtn.addEventListener('mousemove', e => {
+        const r = magBtn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width/2;
+        const y = e.clientY - r.top - r.height/2;
+        magBtn.style.transform = `translate(${x*0.22}px, ${y*0.22}px)`;
+      });
+      magBtn.addEventListener('mouseleave', () => { magBtn.style.transform = ''; });
+    }
+
+    /* ── CHATBOT (smart responses, no API key) ── */
+    let userName = '';
+    const responses = {
+      'services': 'We offer renovations, new builds, commercial fit-outs, concrete & foundations, roofing, and home extensions. Whatever you need built — we handle it start to finish.',
+      'quote': 'Getting a quote is easy! Just fill out the contact form on this page or call us at 0400 000 000. We\'ll come out, assess the job, and give you a no-obligation quote.',
+      'areas': 'We serve all of Greater Sydney — Parramatta, Penrith, Liverpool, Blacktown, Castle Hill, Hornsby, Sutherland, and everywhere in between.',
+      'licensed': 'Yes! We\'re fully licensed, bonded, and insured. You can build with confidence knowing your project is in qualified hands.',
+      'cost': 'Every project is different, so we quote on a case-by-case basis after seeing the site. No hidden fees — what we quote is what you pay.',
+      'time': 'Timelines depend on the scope of work. A bathroom reno might take 2-3 weeks, a full home build 4-6 months. We\'ll give you a clear timeline upfront and stick to it.',
+      'warranty': 'All our work comes with a structural warranty. We stand behind everything we build. If something isn\'t right, we fix it — no questions asked.',
+    };
+
+    function toggleChat() {
+      const w = document.getElementById('chatWindow');
+      w.classList.toggle('open');
+      if (w.classList.contains('open')) setTimeout(() => document.getElementById('leadName')?.focus(), 100);
+    }
+    function startChat() {
+      const nameInput = document.getElementById('leadName');
+      const name = nameInput.value.trim();
+      if (!name) { nameInput.focus(); return; }
+      userName = name;
+      document.getElementById('chatLead').style.display = 'none';
+      document.getElementById('chatArea').style.display = 'flex';
+      document.getElementById('chatMessages').innerHTML = `<div class="chat-msg">Hey ${userName}! I'm the Apex Builders assistant. How can I help you today?</div>`;
+      setTimeout(() => document.getElementById('chatInput').focus(), 100);
+    }
+    function quickAsk(q) {
+      document.getElementById('chatInput').value = q;
+      document.getElementById('quickReplies').style.display = 'none';
+      sendChat();
+    }
+    function getResponse(msg) {
+      const m = msg.toLowerCase();
+      if (m.includes('service') || m.includes('what do you') || m.includes('offer')) return responses.services;
+      if (m.includes('quote') || m.includes('price') || m.includes('estimate') || m.includes('free')) return responses.quote;
+      if (m.includes('area') || m.includes('where') || m.includes('location') || m.includes('cover') || m.includes('serve')) return responses.areas;
+      if (m.includes('licen') || m.includes('insur') || m.includes('bond') || m.includes('qualif')) return responses.licensed;
+      if (m.includes('cost') || m.includes('how much') || m.includes('expensive') || m.includes('budget')) return responses.cost;
+      if (m.includes('long') || m.includes('time') || m.includes('how long') || m.includes('timeline') || m.includes('weeks')) return responses.time;
+      if (m.includes('warrant') || m.includes('guarantee') || m.includes('fix')) return responses.warranty;
+      return `Great question, ${userName}! For detailed info on that, the best thing is to give us a call at 0400 000 000 or fill out the contact form. We'll get back to you within a business day.`;
+    }
+    function sendChat() {
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (!val) return;
+      const msgs = document.getElementById('chatMessages');
+      msgs.innerHTML += `<div class="chat-msg" style="background:var(--dark);color:white;border-radius:10px 10px 3px 10px;align-self:flex-end;margin-left:auto;max-width:80%;">${val}</div>`;
+      input.value = '';
+      msgs.scrollTop = msgs.scrollHeight;
+      const typingId = 'typing-' + Date.now();
+      msgs.innerHTML += `<div class="chat-msg" id="${typingId}" style="padding:0;"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+      msgs.scrollTop = msgs.scrollHeight;
+      setTimeout(() => {
+        const el = document.getElementById(typingId);
+        el.style.padding = '11px 15px';
+        el.innerHTML = getResponse(val);
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 800 + Math.random() * 600);
+    }
+  </script>
+</body>
+</html>
